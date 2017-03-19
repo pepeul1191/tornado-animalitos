@@ -7,7 +7,6 @@ import tornado.httpserver
 from config.settings import settings
 from config.routes import routes
 
-
 def main():
 	application = tornado.web.Application(routes, **settings)
 	http_server = tornado.httpserver.HTTPServer(application)
