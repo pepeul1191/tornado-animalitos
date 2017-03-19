@@ -5,16 +5,14 @@ import tornado.ioloop
 import tornado.web
 import tornado.httpserver
 from config.settings import settings
+from config.routes import routes
 
-class MainHandler(tornado.web.RequestHandler):
-    def get(self):
-        self.write("Hello, world??")
 
 if __name__ == "__main__":
-	application = tornado.web.Application([
-		(r"/", MainHandler),
-	])
-		
+	application = tornado.web.Application([routes, settings])
 	http_server = tornado.httpserver.HTTPServer(application)
+	#options.port  = int(raw_input('Ingrese el puerto:'))
+	#http_server.listen(options.port)
+	#print "Instancia del servidor Tornado ejecutándose en el puerto : " + str(options.port)
 	http_server.listen(8888)
 	tornado.ioloop.IOLoop.current().start()
