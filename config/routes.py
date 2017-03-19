@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import tornado.web
-import tornado.httputil
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
@@ -10,7 +9,7 @@ class MainHandler(tornado.web.RequestHandler):
 
 class LoginHandler(tornado.web.RequestHandler):
 	def prepare(self):
-		self.set_header("Server", "Python")
+		#self.set_header("Server", "Python")
 		if 2 == 3:
 			self.redirect('/')
 
