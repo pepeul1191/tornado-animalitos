@@ -3,7 +3,6 @@
 
 import tornado.web
 import tornado.httputil
-import pprint
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
@@ -11,11 +10,12 @@ class MainHandler(tornado.web.RequestHandler):
 
 class LoginHandler(tornado.web.RequestHandler):
 	def prepare(self):
+		self.set_header("Server", "Python")
 		if 2 == 3:
 			self.redirect('/')
 
 	def get(self):
-		self.request.headers
+		self.set_status(400)
 		self.write("<h1>LOGIN</h1>")
 
 routes = [
