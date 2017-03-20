@@ -3,14 +3,19 @@
 
 import requests
 import json
+from config.services import *
 
 class Helper:
 	def __init__(self):
+		services = Services()
+
 		self.diccionario = {
 			'BASE_URL': 'http://localhost:8888/',
 			'STATICS_URL' : 'http://localhost:8001/dashboard/',
-			'accesos' : 'http://127.0.0.1:3000/',
-			'ambiente': 'desarrollo'
+			'accesos' : services.get('accesos'),
+			'ambiente': 'desarrollo',
+			'nombre_app' : 'Aplicación Python Tornado',
+			'cipher_key' : 's53hHaKFQoqXTDU9' 
 		}
 
 	def listar_modulos(self):
