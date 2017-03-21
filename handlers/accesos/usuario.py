@@ -7,8 +7,9 @@ from config.helper import *
 from config.services import *
 
 class AccesosUsuarioValidarCorreoRepetidoHandler(tornado.web.RequestHandler):
-	def prepare(self):
+	def set_default_headers(self):
 		self.set_header('Access-Control-Allow-Origin', '*')
+		self.set_header("Access-Control-Allow-Headers", "x-requested-with")
 		self.set_header('Access-Control-Allow-Methods', 'POST')
 
 	def post(self):
@@ -20,10 +21,15 @@ class AccesosUsuarioValidarCorreoRepetidoHandler(tornado.web.RequestHandler):
 		url = services.get('accesos') + 'usuario/validar_correo_repetido?correo=' + correo
 		response = requests.post(url)
 
-		return response.text
+		self.write(response.text)
 
 class AccesosUsuarioValidarUsuarioRepetidoHandler(tornado.web.RequestHandler):
-    def post(self):
+	def set_default_headers(self):
+		self.set_header('Access-Control-Allow-Origin', '*')
+		self.set_header("Access-Control-Allow-Headers", "x-requested-with")
+		self.set_header('Access-Control-Allow-Methods', 'POST')
+
+	def post(self):
 		services = Services()
 		helper = Helper()
 
@@ -32,4 +38,4 @@ class AccesosUsuarioValidarUsuarioRepetidoHandler(tornado.web.RequestHandler):
 		url = services.get('accesos') + 'usuario/validar_usuario_repetido?usuario=' + usuario
 		response = requests.post(url)
 
-		return response.text
+		self.write(response.text)
