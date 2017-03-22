@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 
 import tornado.web
-from handlers.login import *
+from handlers.accesos.login import *
 from handlers.accesos.usuario import *
+from handlers.accesos.session import *
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
@@ -11,7 +12,8 @@ class MainHandler(tornado.web.RequestHandler):
 
 routes = [
 	(r'/', MainHandler),
-	(r'/login', LoginIndexHandler),
+	(r'/login', AccesosLoginIndexHandler),
 	(r'/usuario/validar_correo_repetido', AccesosUsuarioValidarCorreoRepetidoHandler),
-	(r'/usuario/validar_usuario_repetido', AccesosUsuarioValidarUsuarioRepetidoHandler)
+	(r'/usuario/validar_usuario_repetido', AccesosUsuarioValidarUsuarioRepetidoHandler),
+	(r'/session/logueado', AccesosSessionLogueadoHandler),
 ]
