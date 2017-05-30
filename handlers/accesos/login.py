@@ -5,14 +5,20 @@ import tornado.web
 import requests
 import datetime
 import json
+from handlers.base import BaseHandler
 from config.helper import *
 from config.services import *
 
-class AccesosLoginIndexHandler(tornado.web.RequestHandler):
-	def set_default_headers(self):
+class AccesosLoginIndexHandler(BaseHandler):
+	def set_default_headers_nuevo(self):
+		print 'set_default_headers!!!!!!!!!!!!!!!!!!!!!'
 		self.set_header("Access-Control-Allow-Origin", "*")
 
 	def get(self):
+		self.set_default_headers_nuevo()
+		self.logueado()
+		self.validar_permisos([3,5,1])
+
 		self.set_status(400)
 		self.write("<h1>LOGIN</h1>")
 
