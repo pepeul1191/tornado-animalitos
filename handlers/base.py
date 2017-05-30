@@ -23,9 +23,12 @@ class BaseHandler(tornado.web.RequestHandler):
 
     def validar_permisos(self, permisos):
         if 1 in permisos:
-            print 'si tiene los permisos' 
+            print 'si tiene los permisos'
+            self.write("<h2>si tiene los permisos</h2>") 
         else:
             print 'no tiene los permisos'
+            self.write("<h2>no tiene los permisos</h2>")
+            self.finish() 
 
     def load_json(self):
         """Load JSON from the request body and store them in

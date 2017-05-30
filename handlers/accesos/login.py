@@ -13,11 +13,11 @@ class AccesosLoginIndexHandler(BaseHandler):
 	def set_default_headers_nuevo(self):
 		print 'set_default_headers!!!!!!!!!!!!!!!!!!!!!'
 		self.set_header("Access-Control-Allow-Origin", "*")
+		self.logueado()
+		self.validar_permisos([3,5])
 
 	def get(self):
 		self.set_default_headers_nuevo()
-		self.logueado()
-		self.validar_permisos([3,5,1])
 
 		self.set_status(400)
 		self.write("<h1>LOGIN</h1>")
