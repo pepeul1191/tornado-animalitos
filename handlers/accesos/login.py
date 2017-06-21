@@ -17,10 +17,11 @@ class AccesosLoginIndexHandler(BaseHandler):
 		self.validar_permisos([3,5])
 
 	def get(self):
-		self.set_default_headers_nuevo()
-
-		self.set_status(400)
-		self.write("<h1>LOGIN</h1>")
+		#self.set_default_headers_nuevo()
+		#self.set_status(400)
+		#self.write("<h1>LOGIN</h1>")
+		helper = Helper()
+		self.render('accesos/login/index.html', helper=helper)
 
 	def post(self):
 		services = Services()

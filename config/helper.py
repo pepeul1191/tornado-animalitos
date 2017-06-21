@@ -11,8 +11,7 @@ class Helper:
 
 		self.diccionario = {
 			'BASE_URL': 'http://localhost:8888/',
-			'STATICS_URL' : 'http://localhost:8001/dashboard/',
-			'accesos' : services.get('accesos'),
+			'STATICS_URL' : 'http://localhost:8888/static/',
 			'ambiente': 'desarrollo',
 			'nombre_app' : 'Aplicación Python Tornado',
 			'cipher_key' : 's53hHaKFQoqXTDU9' 
