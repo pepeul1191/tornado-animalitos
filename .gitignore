@@ -1,2 +1,4 @@
 *.pyc
 /media/bower_components
+/node_modules
+package-lock.json

@@ -21,7 +21,7 @@ class AccesosLoginIndexHandler(BaseHandler):
 		#self.set_status(400)
 		#self.write("<h1>LOGIN</h1>")
 		helper = Helper()
-		self.render('accesos/login/index.html', helper=helper)
+		self.render('login/index.html', helper=helper)
 
 	def post(self):
 		services = Services()

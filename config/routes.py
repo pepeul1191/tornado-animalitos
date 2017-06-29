@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import tornado.web
-from handlers.accesos.login import *
+from handlers.login import *
 from handlers.accesos.usuario import *
 from handlers.accesos.session import *
 
