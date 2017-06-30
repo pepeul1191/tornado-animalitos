@@ -9,7 +9,7 @@ from handlers.base import BaseHandler
 from config.helper import *
 from config.services import *
 
-class AccesosLoginIndexHandler(BaseHandler):
+class LoginIndexHandler(BaseHandler):
 	def set_default_headers_nuevo(self):
 		print 'set_default_headers!!!!!!!!!!!!!!!!!!!!!'
 		self.set_header("Access-Control-Allow-Origin", "*")
@@ -23,7 +23,7 @@ class AccesosLoginIndexHandler(BaseHandler):
 		helper = Helper()
 		self.render('login/index.html', mensaje = 'false', helper=helper)
 
-class AccesosLoginAccederHandler(BaseHandler):
+class LoginAccederHandler(BaseHandler):
 	def post(self):
 		services = Services()
 		helper = Helper()
@@ -47,6 +47,6 @@ class AccesosLoginAccederHandler(BaseHandler):
 		contrasenia = self.get_argument('contrasenia')
 
 		if usuario == 'pepe' and contrasenia == 'kiki123':
-			self.redirect('http://softweb.pe')
+			self.redirect(helper.get('BASE_URL'))
 		else:
 			self.render('login/index.html', mensaje = 'true', helper=helper)

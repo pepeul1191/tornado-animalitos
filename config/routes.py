@@ -3,6 +3,7 @@
 
 import tornado.web
 from handlers.login import *
+from handlers.home import *
 from handlers.accesos.usuario import *
 from handlers.accesos.session import *
 
@@ -11,10 +12,11 @@ class MainHandler(tornado.web.RequestHandler):
         self.write('Hello, world')
 
 routes = [
-	(r'/', MainHandler),
+	#home
+	(r'/', HomeIndexHandler),
 	# login
-	(r'/login', AccesosLoginIndexHandler),
-	(r'/login/acceder', AccesosLoginAccederHandler),
+	(r'/login', LoginIndexHandler),
+	(r'/login/acceder', LoginAccederHandler),
 	# usuario
 	(r'/usuario/validar_correo_repetido', AccesosUsuarioValidarCorreoRepetidoHandler),
 	(r'/usuario/validar_usuario_repetido', AccesosUsuarioValidarUsuarioRepetidoHandler),

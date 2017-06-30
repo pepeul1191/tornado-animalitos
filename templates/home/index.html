@@ -1,0 +1,12 @@
+{% extends "../layouts/home.html" %}
+{% block stylesheet %}
+<link href="{{helper.get('STATICS_URL')}}dist/home/styles.min.css" rel="stylesheet" type="text/css"/>
+{% end %}
+{% block javascript %}
+<script src="{{helper.get('STATICS_URL')}}dist/home/app.min.js" type="text/javascript"></script>
+{% end %}
+{% block content %}
+home
+<script type="text/javascript">
+</script>
+{% end %}

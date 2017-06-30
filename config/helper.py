@@ -7,7 +7,7 @@ from config.services import *
 
 class Helper:
 	def __init__(self):
-		services = Services()
+		self.services = Services()
 
 		self.diccionario = {
 			'BASE_URL': 'http://localhost:8888/',
@@ -18,12 +18,12 @@ class Helper:
 		}
 
 	def listar_modulos(self):
-		url = self.get('accesos') + "modulo/listar"
+		url = self.services.get('accesos') + "modulo/listar_menu?sistema=SISTEMA_ACCESOS"
 		response = requests.get(url)
 		return response.text
 
 	def listar_menu(self, modulo):
-		url = self.get('accesos') + "item/listar/menu/" + modulo
+		url = self.services.get('accesos') + "item/listar/menu/" + modulo
 		response = requests.get(url)
 		return response.text
 

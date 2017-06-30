@@ -19,7 +19,7 @@ function errorLog(error){
 gulp.task('watch', function(){
     var server = livereload();
 
-    gulp.watch(['media/assets/login/**/**'], ['login']);
+    gulp.watch(['media/layouts/**', 'media/assets/**/**/**'], ['login', 'home']);
 });
 
 gulp.task('default', function(){
@@ -75,6 +75,23 @@ gulp.task('login', function(){
     .pipe(minifyCss())
     .on('error', errorLog)
     .pipe(gulp.dest('media/dist/login'))
+    .pipe(livereload());
+});
+
+gulp.task('home', function(){
+  gulp.src(['media/bower_components/jquery/dist/jquery.min.js', 'media/bower_components/handlebars/handlebars.min.js', 'media/assets/layouts/home.js', 'media/assets/home/js/index.js'])
+    .pipe(uglify())
+    .pipe(plumber())
+    .pipe(concatJs('app.min.js'))
+    .pipe(gulp.dest('media/dist/home'))
+    .pipe(livereload());
+
+  gulp.src(['media/dist/assets/styles.min.css','media/assets/home/css/index.css'])
+    .pipe(plumber())
+    .pipe(concatCss('styles.min.css'))
+    .pipe(minifyCss())
+    .on('error', errorLog)
+    .pipe(gulp.dest('media/dist/home'))
     .pipe(livereload());
 });
 
