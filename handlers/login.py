@@ -21,13 +21,13 @@ class AccesosLoginIndexHandler(BaseHandler):
 		#self.set_status(400)
 		#self.write("<h1>LOGIN</h1>")
 		helper = Helper()
-		self.render('login/index.html', helper=helper)
+		self.render('login/index.html', mensaje = 'false', helper=helper)
 
+class AccesosLoginAccederHandler(BaseHandler):
 	def post(self):
 		services = Services()
 		helper = Helper()
-		rpta = ""
-
+		'''
 		usuario = self.get_argument('usuario')
 		contrasenia =  requests.post(services.get('cipher') + 'encode?key=' + helper.get('cipher_key') + '&texto=' + str(self.get_argument('contrasenia'))).text
 		
@@ -42,3 +42,11 @@ class AccesosLoginIndexHandler(BaseHandler):
 			rpta = {'existe' : 0}
 		#print json.dumps(rpta)
 		self.write(json.dumps(rpta))
+		'''
+		usuario = self.get_argument('usuario')
+		contrasenia = self.get_argument('contrasenia')
+
+		if usuario == 'pepe' and contrasenia == 'kiki123':
+			self.redirect('http://softweb.pe')
+		else:
+			self.render('login/index.html', mensaje = 'true', helper=helper)

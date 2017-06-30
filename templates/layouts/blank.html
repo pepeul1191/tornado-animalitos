@@ -5,19 +5,19 @@
         <meta charset="UTF-8">
         <link rel="icon" type="image/x-icon" href="{{helper.get('STATICS_URL')}}assets/site/img/favicon.ico">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript">var BASE_URL = '{{helper.get('BASE_URL')}}';</script>
         <!-- Inicio CSS-->
         {% block stylesheet %}{% end %}
         <!-- Fin CSS-->
+        <!-- Inicio JS-->
+        {% block javascript %}{% end %}
+        <!-- Fin JS-->
     </head>
     <body>
         <!-- Inicio Yield-->
         {% block content %}
         {% end %}
         <!-- Fin Yield-->
-        <!-- Inicio JS-->
-        <script src="{{helper.get('STATICS_URL')}}dist/assets/app.min.js" type="text/javascript"></script>
-        {% block javascript %}{% end %}
-        <!-- Fin JS-->
     </body>
 </html>
     
