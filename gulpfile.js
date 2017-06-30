@@ -19,7 +19,7 @@ function errorLog(error){
 gulp.task('watch', function(){
     var server = livereload();
 
-    gulp.watch(['media/assets/login/css/index.css'], ['login']);
+    gulp.watch(['media/assets/login/**/**'], ['login']);
 });
 
 gulp.task('default', function(){
@@ -53,7 +53,7 @@ gulp.task('layout-css', function() {
 gulp.task('layout-js', function() {
     gulp.src(['media/bower_components/jquery/dist/jquery.min.js', 'media/bower_components/bootstrap/dist/js/bootstrap.min.js', 'media/bower_components/underscore/underscore-min.js', 'media/bower_components/handlebars/handlebars.min.js', 'media/bower_components/swp-plugins/assets/js/mootools-core.min.js', 'media/bower_components/swp-plugins/assets/js/mootools.min.js', 'media/bower_components/swp-plugins/assets/js/mootools-interfaces.min.js'])
     .pipe(plumber())
-    .pipe(concatJs('app.min.js'))  // concat and name it "concat.js"
+    .pipe(concatJs('app.min.js'))
     .pipe(gulp.dest('media/dist/assets'));
 });
 
@@ -62,10 +62,12 @@ gulp.task('layout', ['fonts', 'layout-css', 'layout-js']);
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 gulp.task('login', function(){
-  gulp.src(['media/bower_components/jquery/dist/jquery.min.js', 'media/bower_components/handlebars/handlebars.min.js'])
+  gulp.src(['media/bower_components/jquery/dist/jquery.min.js', 'media/bower_components/handlebars/handlebars.min.js', 'media/assets/login/js/index.js'])
+    .pipe(uglify())
     .pipe(plumber())
-    .pipe(concatJs('app.min.js'))  // concat and name it "concat.js"
-    .pipe(gulp.dest('media/dist/login'));
+    .pipe(concatJs('app.min.js'))
+    .pipe(gulp.dest('media/dist/login'))
+    .pipe(livereload());
 
   gulp.src(['media/dist/assets/styles.min.css','media/assets/login/css/index.css'])
     .pipe(plumber())

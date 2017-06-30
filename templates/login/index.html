@@ -38,11 +38,6 @@
 	</div>
  </script>
 <script type="text/javascript">
-	var login = $('#login-template').html();
-	var template = Handlebars.compile(login);
-	var data = {'BASE_URL': BASE_URL, 'mensaje': {{mensaje}}};
-	var template_compiled = template(data);
-
-	$('body').html(template_compiled);
+	var mensaje = {{mensaje}};
 </script>
 {% end %}
