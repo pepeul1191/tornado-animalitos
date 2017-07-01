@@ -3,12 +3,19 @@
 */
 
 $( document ).ready(function() {
-	var menu_modulos = $('#menu-modulos').html();
-	var template = Handlebars.compile(menu_modulos);
-	var data = {'base_url': 'HOLA MUNDO!!!'};
+	var home_template = $("#home-template").html();
+	var template = Handlebars.compile(home_template);
+
+	Handlebars.registerPartial("menu_modulos", $("#menu-modulos").html());
+	Handlebars.registerPartial("yield", $("#yield").html());
+
+	var data = {
+		'BASE_URL' : BASE_URL, 
+		'STATICS_URL' : STATICS_URL,
+	};
 	var template_compiled = template(data);
 
-	$('.navbar-nav').html(template_compiled);
+	$('body').html(template_compiled);
 });
 
 Handlebars.registerHelper( "menuModulos", function (){
