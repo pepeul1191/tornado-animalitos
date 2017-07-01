@@ -21,7 +21,8 @@ class LoginIndexHandler(BaseHandler):
 		#self.set_status(400)
 		#self.write("<h1>LOGIN</h1>")
 		helper = Helper()
-		self.render('login/index.html', mensaje = 'false', helper=helper)
+		data = {	}
+		self.render('login/index.html', helper=helper, data = json.dumps(data))
 
 class LoginAccederHandler(BaseHandler):
 	def post(self):
@@ -49,4 +50,7 @@ class LoginAccederHandler(BaseHandler):
 		if usuario == 'pepe' and contrasenia == 'kiki123':
 			self.redirect(helper.get('BASE_URL'))
 		else:
-			self.render('login/index.html', mensaje = 'true', helper=helper)
+			data = {
+				"mensaje" : "true"
+			}	
+			self.render('login/index.html', helper=helper, data = json.dumps(data))

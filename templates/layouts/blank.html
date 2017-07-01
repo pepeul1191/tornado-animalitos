@@ -14,10 +14,19 @@
         <!-- Fin JS-->
     </head>
     <body>
-        <!-- Inicio Yield-->
-        {% block content %}
-        {% end %}
-        <!-- Fin Yield-->
+        <script id="blank-template" type="text/x-handlebars-template">
+            <!-- Inicio Yield-->
+            {% raw '{{> yield}}' %}
+            <!-- Fin Yield-->
+        </script>
+        <script id="yield" type="text/x-handlebars-template">
+            {% block content %}{% end %}
+        </script>
+        <script type="text/javascript">
+            var BASE_URL = '{{helper.get('BASE_URL')}}';
+            var STATICS_URL  = '{{helper.get("STATICS_URL")}}';
+            var DATA = JSON.parse('{% raw data %}');
+        </script>
     </body>
 </html>
     

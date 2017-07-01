@@ -62,7 +62,7 @@ gulp.task('layout', ['fonts', 'layout-css', 'layout-js']);
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 gulp.task('login', function(){
-  gulp.src(['media/bower_components/jquery/dist/jquery.min.js', 'media/bower_components/handlebars/handlebars.min.js', 'media/assets/login/js/index.js'])
+  gulp.src(['media/bower_components/jquery/dist/jquery.min.js', 'media/bower_components/handlebars/handlebars.min.js', 'media/assets/layouts/blank.js', 'media/assets/login/js/index.js'])
     .pipe(uglify())
     .pipe(plumber())
     .pipe(concatJs('app.min.js'))

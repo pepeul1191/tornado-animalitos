@@ -1,5 +1,5 @@
 /*! layouts/home.js 
-	variables : MODULOS_JSON
+	variables : BASE_URL, STATICS_URL, MODULOS_JSON, DATA
 */
 
 $( document ).ready(function() {
