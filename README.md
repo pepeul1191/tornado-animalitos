@@ -1,10 +1,11 @@
 ## Boilerplate Tornado Python
 
-Dependencias:
+Requisitos de software previamente instalado:
 
-	$ sudo pip install tornado
-	$ sudo pip install requests
+	+ Python 2.7
+	+ Python PIP
+	+ NodeJS - NPM - Gulp
 
-	O
+Instalación de dependencias:
 
 	$ sudo pip install -r requirements.txt && npm install && bower install 

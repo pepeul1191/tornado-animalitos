@@ -204,13 +204,13 @@
         {% raw '{{{menuModulos}}}' %}
     </script>
     <script id="yield" type="text/x-handlebars-template">
-        <h1>HOME</h1>
         {% block content %}{% end %}
     </script>
     <script type="text/javascript">
         var BASE_URL = '{{helper.get('BASE_URL')}}';
         var STATICS_URL  = '{{helper.get("STATICS_URL")}}';
         var MODULOS_JSON = JSON.parse('{% raw helper.listar_modulos() %}');
+        var DATA = JSON.parse('{% raw helper.listar_modulos() %}');
     </script>
     </body>
 </html>
