@@ -72,9 +72,9 @@
            <!-- Inicio Breadcrumbs -->  
           <div class="breadcrumbs">
           <div class="container">
-             <h1 class="pull-left">{if isset($titleForm)}{$titleForm}{/if}</h1>
+             <h1 class="pull-left">{% raw '{{getValue DATA "titulo_form"}}' %}</h1>
             <ul class="pull-right breadcrumb">
-              {if isset($rutaForm)}{$rutaForm}{/if}
+              {% raw '{{getValue DATA "ruta_form"}}' %}
             </ul>
           </div>
         </div>
@@ -210,7 +210,7 @@
         var BASE_URL = '{{helper.get('BASE_URL')}}';
         var STATICS_URL  = '{{helper.get("STATICS_URL")}}';
         var MODULOS_JSON = JSON.parse('{% raw helper.listar_modulos() %}');
-        var DATA = JSON.parse('{% raw helper.listar_modulos() %}');
+        var DATA = JSON.parse('{% raw data %}');
     </script>
     </body>
 </html>

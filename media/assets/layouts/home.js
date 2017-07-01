@@ -12,6 +12,7 @@ $( document ).ready(function() {
 	var data = {
 		'BASE_URL' : BASE_URL, 
 		'STATICS_URL' : STATICS_URL,
+		'DATA' : DATA
 	};
 	var template_compiled = template(data);
 
@@ -24,4 +25,8 @@ Handlebars.registerHelper( "menuModulos", function (){
 	    rpta = rpta + '<li class="dropdown"><a href="' + BASE_URL + modulo['url'] + '" class="dropdown-toggle" data-toggle="dropdown">' + modulo['nombre'] + '</a></li>';
 	});
 	return rpta;    
+});
+
+Handlebars.registerHelper('getValue', function(obj, key) {
+    return obj[key];
 });

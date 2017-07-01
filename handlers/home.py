@@ -20,4 +20,8 @@ class HomeIndexHandler(BaseHandler):
 		#self.set_status(400)
 		#self.write("<h1>LOGIN</h1>")
 		helper = Helper()
-		self.render('home/index.html', helper=helper)
+		data = {
+			"titulo_form" : "Home",
+			"ruta_form" : "Accesos / Menú / Módulos"
+		}
+		self.render('home/index.html', helper = helper, data = json.dumps(data))
