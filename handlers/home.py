@@ -19,9 +19,10 @@ class HomeIndexHandler(BaseHandler):
 		#self.set_default_headers_nuevo()
 		#self.set_status(400)
 		#self.write("<h1>LOGIN</h1>")
-		helper = Helper()
-		data = {
-			"titulo_form" : "Home",
-			"ruta_form" : "Accesos / Menú / Módulos"
-		}
-		self.render('home/index.html', helper = helper, data = json.dumps(data))
+		menu = [
+				 {'url' : '#/', 'nombre' : 'Home'},
+             {'url' : '#/buscar', 'nombre' : 'Buscar'},
+             {'url' : '#/contacto', 'nombre' : 'Contacto'}
+      ]
+		data = ''
+		self.render('animalitos/index.html', helper = Helper(), data = data, menu = json.dumps(menu))

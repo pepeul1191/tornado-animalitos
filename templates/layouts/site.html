@@ -4,11 +4,10 @@
   <meta charset="UTF-8">
   <title>Servicio de Monta</title>
   <link rel="shortcut icon" href="{{helper.get('STATICS_URL')}}favicon.ico" type="image/x-icon">
-  {% block css %}{% endblock %}
-  {% block js_top %}{% endblock %}
+  {% block css %}{% end %}
+  {% block js_top %}{% end %}
 </head>
 <body>
-    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
     <!-- Inicio Modal -->
     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-container"  id="btnModal" style="display: none" >Launch demo modal</button>
     <div class="modal fade" id="modal-container" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
@@ -137,24 +136,24 @@
               </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                    {% raw %}{{> menu_modulos}}{% endraw %}
+                    {% raw '{{> menu_modulos}}' %}
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="{% raw %}{{BASE_URL}}{% endraw %}#/registro">Registrarse</a></li>
-                        <li><a href="{% raw %}{{BASE_URL}}{% endraw %}#/login">Login</a></li>
+                        <li><a href="{% raw '{{BASE_URL}}' %}#/registro">Registrarse</a></li>
+                        <li><a href="{% raw '{{BASE_URL}}' %}#/login">Login</a></li>
                     </ul>
                 </div>
               <!--/.nav-collapse -->
             </div><!--/.container-fluid -->
         </nav>
-        {% raw %}{{> yield}}{% endraw %}
+        {% raw '{{> yield}}' %}
     </script>
     <script id="menu-modulos" type="text/x-handlebars-template">
-        {% raw %}{{{menuModulos}}}{% endraw %}
+        {% raw '{{{menuModulos}}}' %}
     </script>
 	<script id="yield" type="text/x-handlebars-template">
-        {% block content %}{% endblock %}
+        {% block content %}{% end %}
     </script>
-	{% block js_bottom %}{% endblock %}
+	{% block js_bottom %}{% end %}
 </body>
 </html>
