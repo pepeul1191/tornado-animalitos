@@ -3,6 +3,7 @@
 
 import tornado.web
 from handlers.home import *
+from handlers.registro import *
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
@@ -11,4 +12,6 @@ class MainHandler(tornado.web.RequestHandler):
 routes = [
 	#home
 	(r'/', HomeIndexHandler),
+	(r'/registro/validar_correo_repetido', RegistroValidarCorreoRepetidoHandler),
+	(r'/registro/validar_usuario_repetido', RegistroValidarUsuarioRepetidoHandler)
 ]
