@@ -24,5 +24,5 @@ class HomeIndexHandler(BaseHandler):
              {'url' : '#/buscar', 'nombre' : 'Buscar'},
              {'url' : '#/contacto', 'nombre' : 'Contacto'}
       ]
-		data = ''
+		data = '1'
 		self.render('animalitos/index.html', helper = Helper(), data = data, menu = json.dumps(menu))

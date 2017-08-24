@@ -8,90 +8,76 @@ var plumber = require('gulp-plumber');
 var watch = require('gulp-watch');
 var livereload = require('gulp-livereload');
 var BASE_URL = 'http://localhost:8888/static/';
+var DESTINO = 'media/dist/';
+var MEDIA = 'media/'
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 function errorLog(error){
     console.error.bind(error);
     this.emit('end');
 }
-
-gulp.task('watch', function(){
-    var server = livereload();
-
-    gulp.watch(['media/layouts/**', 'media/assets/**/**/**'], ['login', 'home']);
-});
-
-gulp.task('default', function(){
-	console.log("HOLA!!!");
-});
-
-gulp.task('demo', function(){
-  gulp.src('assets/*/*.js')
-    .pipe(plumber())
-    .pipe(uglify())
-    .pipe(gulp.dest('media/dist/js'));
-});
-
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 gulp.task('fonts', function() {
-  	gulp.src(['media/bower_components/font-awesome/fonts/*', 'media/bower_components/bootstrap/fonts/*'])
+    gulp.src([MEDIA + 'bower_components/font-awesome/fonts/*', MEDIA + 'bower_components/bootstrap/fonts/*', MEDIA + 'assets/fontastic/fonts/*'])
     .pipe(plumber())
-      .pipe(gulp.dest('media/dist/assets'));
+      .pipe(gulp.dest(DESTINO + 'assets'));
 });
 
 gulp.task('layout-css', function() {
-      gulp.src(['media/dist/assets/icons.min.css','media/bower_components/bootstrap/dist/css/bootstrap.min.css', 'media/bower_components/font-awesome/css/font-awesome.min.css', 'media/bower_components/unify-pp/css/styles.css'])
+      gulp.src([MEDIA + 'bower_components/bootstrap/dist/css/bootstrap.min.css', MEDIA + 'bower_components/font-awesome/css/font-awesome.min.css', MEDIA + 'assets/fontastic/styles.css', MEDIA + 'assets/site/css/styles.css', MEDIA + 'assets/login/index.css'])
       .pipe(plumber())
       .pipe(concatCss('styles.min.css'))
       .pipe(minifyCss())
       .pipe(replace('../../../font-awesome/fonts/', BASE_URL + 'dist/assets/'))
-      .pipe(gulp.dest('media/dist/assets'));
+      .pipe(replace('../../../../assets/fontastic/fonts', BASE_URL + 'dist/assets/'))
+      .pipe(replace('../fonts/glyphicons', 'glyphicons'))
+      .pipe(gulp.dest(DESTINO + 'assets'));
 });
 
 gulp.task('layout-js', function() {
-    gulp.src(['media/bower_components/jquery/dist/jquery.min.js', 'media/bower_components/bootstrap/dist/js/bootstrap.min.js', 'media/bower_components/underscore/underscore-min.js', 'media/bower_components/handlebars/handlebars.min.js', 'media/bower_components/swp-plugins/assets/js/mootools-core.min.js', 'media/bower_components/swp-plugins/assets/js/mootools.min.js', 'media/bower_components/swp-plugins/assets/js/mootools-interfaces.min.js'])
+    gulp.src([MEDIA + 'bower_components/jquery/dist/jquery.min.js', MEDIA + 'bower_components/bootstrap/dist/js/bootstrap.min.js', MEDIA + 'bower_components/underscore/underscore-min.js', MEDIA + 'bower_components/backbone/backbone-min.js', MEDIA + 'bower_components/backbone.marionette/lib/backbone.marionette.min.js', MEDIA + 'bower_components/handlebars/handlebars.min.js'])
     .pipe(plumber())
-    .pipe(concatJs('app.min.js'))
-    .pipe(gulp.dest('media/dist/assets'));
+    .pipe(concatJs('libs.min.js'))
+    .pipe(gulp.dest(DESTINO + 'assets'));
 });
 
 gulp.task('layout', ['fonts', 'layout-css', 'layout-js']);
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-gulp.task('login', function(){
-  gulp.src(['media/bower_components/jquery/dist/jquery.min.js', 'media/bower_components/handlebars/handlebars.min.js', 'media/assets/layouts/blank.js', 'media/assets/login/js/index.js'])
-    .pipe(uglify())
-    .pipe(plumber())
-    .pipe(concatJs('app.min.js'))
-    .pipe(gulp.dest('media/dist/login'))
-    .pipe(livereload());
-
-  gulp.src(['media/dist/assets/styles.min.css','media/assets/login/css/index.css'])
-    .pipe(plumber())
-    .pipe(concatCss('styles.min.css'))
-    .pipe(minifyCss())
-    .on('error', errorLog)
-    .pipe(gulp.dest('media/dist/login'))
-    .pipe(livereload());
+gulp.task('error-css', function() {
+      gulp.src([
+          MEDIA + 'bower_components/bootstrap/dist/css/bootstrap.min.css',
+          MEDIA + 'bower_components/font-awesome/css/font-awesome.min.css', 
+          MEDIA + 'assets/fontastic/styles.css', 
+          MEDIA + 'assets/error/index.css'])
+      .pipe(plumber())
+      .pipe(concatCss('error.min.css'))
+      .pipe(minifyCss())
+      .pipe(replace('../../../font-awesome/fonts/', BASE_URL + 'dist/assets/'))
+      .pipe(replace('../../../assets/fontastic/fonts/', 'assets/'))
+      .pipe(gulp.dest(DESTINO + 'assets'));
 });
 
-gulp.task('home', function(){
-  gulp.src(['media/bower_components/jquery/dist/jquery.min.js', 'media/bower_components/handlebars/handlebars.min.js', 'media/assets/layouts/home.js', 'media/assets/home/js/index.js'])
-    .pipe(uglify())
+gulp.task('app', function(){
+  gulp.start('fonts', 'layout-css', 'layout-js');
+  gulp.src([
+          DESTINO + 'assets/libs.min.js',  
+          MEDIA + 'layouts/site.js',  
+          MEDIA + 'models/usuario.js', 
+          MEDIA + 'views/home.js', 
+          MEDIA + 'views/buscar.js', 
+          MEDIA + 'views/contacto.js',  
+          MEDIA + 'views/registro.js', 
+          MEDIA + 'views/_form_registro.js', 
+          MEDIA + 'views/login.js', 
+          MEDIA + 'views/_form_login.js' , 
+          MEDIA + 'views/_form_contrasenia.js' ,
+          MEDIA + 'routes/router.js'])
+    //.pipe(uglify())
     .pipe(plumber())
     .pipe(concatJs('app.min.js'))
-    .pipe(gulp.dest('media/dist/home'))
-    .pipe(livereload());
-
-  gulp.src(['media/dist/assets/styles.min.css','media/assets/home/css/index.css'])
-    .pipe(plumber())
-    .pipe(concatCss('styles.min.css'))
-    .pipe(minifyCss())
-    .on('error', errorLog)
-    .pipe(gulp.dest('media/dist/home'))
+    .pipe(gulp.dest(DESTINO))//.pipe(gulp.dest(DESTINO + 'home'))
     .pipe(livereload());
 });
-
