@@ -1,9 +1,15 @@
-/*! layouts/home.js 
+/*! layouts/site.js 
 	variables : BASE_URL, STATICS_URL, MODULOS_JSON, DATA
 */
 
 $( document ).ready(function() {
-	var home_template = $("#home-template").html();
+	$("#btn-to-navbar").click(function(){
+		$('html, body').animate({
+            scrollTop: $(".navbar").offset().top
+        }, 1000);
+	});
+
+	var home_template = $("#header-template").html();
 	var template = Handlebars.compile(home_template);
 
 	Handlebars.registerPartial("menu_modulos", $("#menu-modulos").html());
@@ -16,13 +22,13 @@ $( document ).ready(function() {
 	};
 	var template_compiled = template(data);
 
-	$('body').html(template_compiled);
+	$("#header-app").html(template_compiled);
 });
 
 Handlebars.registerHelper( "menuModulos", function (){
 	var rpta = '';
 	MODULOS_JSON.forEach(function(modulo) {
-	    rpta = rpta + '<li class="dropdown"><a href="' + BASE_URL + modulo['url'] + '" class="dropdown-toggle" data-toggle="dropdown">' + modulo['nombre'] + '</a></li>';
+	    rpta = rpta + '<li><a href="' + BASE_URL + modulo['url'] + '">' + modulo['nombre'] + '</a></li>';
 	});
 	return rpta;    
 });
