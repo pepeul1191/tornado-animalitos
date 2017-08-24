@@ -1,32 +1,18 @@
-<!DOCTYPE html>
+{% csrf_token %}
 <html>
-    <head>
-        <title>Dashboar HTML - PP</title>
-        <meta charset="UTF-8">
-        <link rel="icon" type="image/x-icon" href="{{helper.get('STATICS_URL')}}assets/site/img/favicon.ico">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script type="text/javascript">var BASE_URL = '{{helper.get('BASE_URL')}}';</script>
-        <!-- Inicio CSS-->
-        {% block stylesheet %}{% end %}
-        <!-- Fin CSS-->
-        <!-- Inicio JS-->
-        {% block javascript %}{% end %}
-        <!-- Fin JS-->
-    </head>
-    <body>
-        <script id="blank-template" type="text/x-handlebars-template">
-            <!-- Inicio Yield-->
-            {% raw '{{> yield}}' %}
-            <!-- Fin Yield-->
-        </script>
-        <script id="yield" type="text/x-handlebars-template">
-            {% block content %}{% end %}
-        </script>
-        <script type="text/javascript">
-            var BASE_URL = '{{helper.get('BASE_URL')}}';
-            var STATICS_URL  = '{{helper.get("STATICS_URL")}}';
-            var DATA = JSON.parse('{% raw data %}');
-        </script>
-    </body>
+<head>
+	<title>XD</title>
+</head>
+{% load staticfiles %}
+<link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+<link href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'index.css' %}" rel="stylesheet">
+{% block css %}{% endblock %}
+<body>
+	<h1>Header</h1>
+	{% block content %}{% endblock %}
+	<h1>Footer</h1>
+	<script type="text/javascript" src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
+	{% block js %}{% endblock %}
+</body>
 </html>
-    
