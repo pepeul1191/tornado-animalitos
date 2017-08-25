@@ -2,4 +2,4 @@
 
 Ejecutar
   $ cd 
-  $ rspec spec registro.rb
+  $ rspec spec distrito.rb registro.rb
