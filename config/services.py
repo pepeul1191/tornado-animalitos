@@ -4,7 +4,7 @@
 class Services:
 	def __init__(self):
 		self.diccionario = {
-			'accesos' : 'http://127.0.0.1:3000/',
+			'backend' : 'http://127.0.0.1:3000/',
 			'maestros' : 'http://127.0.0.1:3001/',
 			'gestion' : 'http://127.0.0.1:3002/',
 			'cipher' : 'http://127.0.0.1:5000/',

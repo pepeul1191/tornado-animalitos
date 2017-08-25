@@ -17,7 +17,7 @@ class RegistroValidarCorreoRepetidoHandler(BaseHandler):
 
 	def post(self):
 		correo = self.get_argument('correo')
-		url = Services().get('accesos') + 'usuario/correo_repetido?correo=' + str(correo)
+		url = Services().get('backend') + 'usuario/correo_repetido?correo=' + str(correo)
 		response = requests.post(url)
 		self.write(response.text)
 
@@ -30,6 +30,13 @@ class RegistroValidarUsuarioRepetidoHandler(BaseHandler):
 
 	def post(self):
 		usuario = self.get_argument('nombre')
-		url = Services().get('accesos') + 'usuario/nombre_repetido?usuario=' + str(usuario)
+		url = Services().get('backend') + 'usuario/nombre_repetido?usuario=' + str(usuario)
+		response = requests.post(url)
+		self.write(response.text)
+
+class GuardarUsuarioHandler(BaseHandler):
+	def post(self):
+		data = self.get_argument('data')
+		url = Services().get('backend') + 'usuario/crear?data=' + data
 		response = requests.post(url)
 		self.write(response.text)

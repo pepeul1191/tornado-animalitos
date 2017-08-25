@@ -13,5 +13,6 @@ routes = [
 	#home
 	(r'/', HomeIndexHandler),
 	(r'/registro/validar_correo_repetido', RegistroValidarCorreoRepetidoHandler),
-	(r'/registro/validar_usuario_repetido', RegistroValidarUsuarioRepetidoHandler)
+	(r'/registro/validar_usuario_repetido', RegistroValidarUsuarioRepetidoHandler),
+	(r'/registro/guardar_usuario', GuardarUsuarioHandler)
 ]
