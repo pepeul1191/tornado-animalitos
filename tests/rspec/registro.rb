@@ -26,7 +26,7 @@ def crear
                     test = App.new(url)
                     test.post()
                     expect(test.response.body).not_to include('error')
-                    expect(test.response.body).to include('Usuario registrado con éxito')
+                    expect(test.response.body).to include('Usuario registrado con éxito', 'usuario_id', '"tipo_mensaje":"success"')
                 end
             end
         end
