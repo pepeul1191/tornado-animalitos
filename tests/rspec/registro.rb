@@ -16,13 +16,21 @@ def crear
     RSpec.describe App do
         describe "1. Registrar Información Personal : " do
             arreglo.each do |url|
-                it 'Conexión con backend-animalitos' do
+                it '1.1 Conexión con backend-animalitos' do
                   test =App.new('')
                   test.servicios('backend', '/test/conexion')
                   expect(test.response.code).to eq(200)
                 end
+                it '1.2 Registrar Información de Usuario' do
+                    url = 'registro/guardar_usuario?data={"usuario":"pepex","contrasenia":"123","correo":"jaav@afpsdfa.com"}'
+                    test = App.new(url)
+                    test.post()
+                    expect(test.response.body).not_to include('error')
+                    expect(test.response.body).to include('Usuario registrado con éxito')
+                end
             end
         end
+
     end
 end
 

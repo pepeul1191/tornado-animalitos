@@ -4,7 +4,6 @@ class App
      def initialize(url)
         base_url = 'http://127.0.0.1:8888/'
         @url = URI.encode(base_url + url)
-        #@response = response = HTTParty.get()
      end
 
      def get
